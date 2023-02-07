@@ -13,3 +13,10 @@ after_success:
   - docker build -t kaarelsirel/multi-nginx ./nginx
   - docker build -t kaarelsirel/multi-server ./server
   - docker build -t kaarelsirel/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push kaarelsirel/multi-client
+  - docker push kaarelsirel/multi-nginx
+  - docker push kaarelsirel/multi-server
+  - docker push kaarelsirel/multi-worker
